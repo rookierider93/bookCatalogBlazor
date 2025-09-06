@@ -1,0 +1,23 @@
+﻿@page "/edit/{id:int}"
+
+@inject IBookRepository BookRepository
+@inject NavigationManager NavigationManager
+<PageTitle>
+    Edit Book
+</PageTitle>
+
+    <div class="row justify-content-center">
+        @* Enhance="true"  will not reload page after submit *@
+        <BookForm IsEditMode="true" BookId="@Id" OnValidBookSubmit="EditBook" />
+    </div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private async Task EditBook(Book Book)
+    {
+            await BookRepository.UpdateAsync(Book);
+            NavigationManager.NavigateTo("/");
+     }
+}

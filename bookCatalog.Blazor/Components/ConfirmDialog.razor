@@ -1,0 +1,31 @@
+﻿@if (show)
+{
+    <div class="confirm-dailog-container">
+        <div class="confirm-dailog">
+            <h3>
+                @ChildContent
+            </h3>
+            <div class="d-flex flex-row justify-content-end mt-3">
+                <button @onclick="OnCancel" class="btn btn-secondary shadow-none">
+                    Cancel
+                </button>
+                <button @onclick="OnOk" class="btn btn-danger shadow-none ms-3">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool show { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    [Parameter]
+    public EventCallback OnOk { get; set; }
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

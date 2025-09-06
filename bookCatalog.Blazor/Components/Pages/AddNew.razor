@@ -1,0 +1,17 @@
+﻿    @page "/addnew"
+
+@inject IBookRepository BookRepository
+@inject NavigationManager NavigationManager
+<PageTitle>Add New Book</PageTitle>
+
+<div class="row justify-content-center">
+    @* Enhance="true"  will not reload page after submit *@
+    <BookForm IsEditMode="false" OnValidBookSubmit="AddBook"/>
+</div>
+@code {
+    private async Task AddBook(Book book)
+    {
+        await BookRepository.AddAsync(book);
+        NavigationManager.NavigateTo("/");
+    }
+}
