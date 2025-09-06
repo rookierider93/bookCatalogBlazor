@@ -2,7 +2,7 @@
 
 # Install .NET SDK
 echo "Installing .NET SDK..."
-curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 9.0
+curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --channel 8.0
 
 # Add .NET to PATH
 export PATH="$PATH:$HOME/.dotnet"
@@ -19,11 +19,11 @@ dotnet workload list
 
 # Build the project
 echo "Building the project..."
-dotnet publish BlazorHostingProject/BlazorHostingProject.csproj -c Release
+dotnet publish bookCatalog\bookCatalog.Blazor\bookCatalog.Blazor.csproj -c Release
 echo "Project built successfully."
 
 # Verify index.html exists
-if [ ! -f BlazorHostingProject/bin/Release/net9.0/publish/wwwroot/index.html ]; then
+if [ ! -f bookCatalog.Blazor/bin/Release/net8.0/publish/wwwroot/index.html ]; then
     echo "Error: index.html not found in WebClient/bin/Release/net9.0/publish/wwwroot/"
     exit 1
 fi
@@ -32,7 +32,7 @@ fi
 # Copy the output to the build directory
 echo "Copying output to build directory..."
 mkdir -p build/wwwroot
-cp -r BlazorHostingProject/bin/Release/net9.0/publish/wwwroot/* build/wwwroot/
+cp -r bookCatalog.Blazor/bin/Release/net8.0/publish/wwwroot/* build/wwwroot/
 echo "Output copied successfully."
 
 # Verify index.html exists in the copied build directory
